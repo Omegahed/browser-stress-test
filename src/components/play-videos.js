@@ -44,6 +44,11 @@ AFRAME.registerComponent( "play-videos", {
 
                         if ( video.paused )
                         {
+                            console.debug(
+                                "Video is paused:",
+                            video
+                            );
+
                             video.play();
                         }
                     }
