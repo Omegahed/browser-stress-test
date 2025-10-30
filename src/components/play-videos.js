@@ -9,16 +9,25 @@ if ( typeof AFRAME === "undefined" )
 
 AFRAME.registerComponent( "play-videos", {
 
-    play: function()
+    init: function()
     {
-        document.querySelectorAll ( "video" ).forEach(
-            ( video ) =>
+        document.querySelector( "a-scene" ).addEventListener(
+            "loaded",
+            () =>
             {
-                video.play();
-            }
-        );
+                console.debug( "A-Frame scene is loaded." );
 
-        document.querySelector( "a-video" ).object3D.renderOrder = 1;
-    },
+                document.querySelectorAll ( "video" ).forEach(
+                    ( video ) =>
+                    {
+                        video.play();
+                    }
+                );
+
+                document.querySelector( "a-video" )
+                    .object3D.renderOrder = 1;
+            }
+        )
+    }
 
 } );
