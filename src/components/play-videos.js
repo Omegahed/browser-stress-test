@@ -20,7 +20,32 @@ AFRAME.registerComponent( "play-videos", {
                 document.querySelectorAll ( "video" ).forEach(
                     ( video ) =>
                     {
-                        video.play();
+                        video.addEventListener(
+                            "playing",
+                            () =>
+                            {
+                                console.debug(
+                                    "Video is playing:",
+                                    video
+                                );
+                            }
+                        );
+
+                        video.addEventListener(
+                            "paused",
+                            () =>
+                            {
+                                console.debug(
+                                    "Video is paused:",
+                                    video
+                                );
+                            }
+                        );
+
+                        if ( video.paused )
+                        {
+                            video.play();
+                        }
                     }
                 );
 
