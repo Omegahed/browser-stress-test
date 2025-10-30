@@ -1,4 +1,4 @@
-# A-Frame Vite Template
+# Browser Stress Test
 
 ## 1. Notice
 
