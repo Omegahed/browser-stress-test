@@ -1,0 +1,36 @@
+{
+  "name": "browser-stress-test",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview --host"
+  },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Omegahed/browser-stress-test.git"
+    },
+    "keywords": [
+        "browser",
+        "stress",
+        "test",
+        "performance"
+    ],
+    "author": "James Maki",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/Omegahed/browser-stress-test/issues"
+    },
+    "homepage": "https://github.com/Omegahed/browser-stress-test#readme",
+    "engines": {
+        "node": ">=20.15.1",
+        "npm": ">=10.8.2"
+    },
+  "devDependencies": {
+    "@vitejs/plugin-basic-ssl": "^2.1.0",
+    "aframe": "~1.7.1",
+    "vite": "^7.1.3"
+  }
+}
