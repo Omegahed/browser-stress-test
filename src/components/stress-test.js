@@ -77,7 +77,7 @@ AFRAME.registerComponent( "stress-test", {
                 {
                     video.muted = false;
 
-                    console.debug( `Video muted: ${ video.muted}` );
+                    console.debug( `Video muted: ${ video.muted }` );
 
                     return;
                 }
