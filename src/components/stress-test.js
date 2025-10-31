@@ -39,11 +39,13 @@ AFRAME.registerComponent( "stress-test", {
 
     play: function()
     {
-            this.stressTestScene(
+        this.stressTestScene(
             this.data.boxCount,
             this.data.textureWidth,
             this.data.textureHeight
         );
+
+        this.playAllVideos();
     },
 
     updateSchemaFromUrlParameters: function()
@@ -162,6 +164,24 @@ AFRAME.registerComponent( "stress-test", {
 
         // NOTE: Export as data URL.
         return canvas.toDataURL();
+    },
+
+    playAllVideos: function()
+    {
+        document.querySelectorAll ( "video" ).forEach(
+            ( video ) =>
+            {
+                if ( video.paused )
+                {
+                    console.debug(
+                        "Video is paused:",
+                    video
+                    );
+
+                    video.play();
+                }
+            }
+        );
     },
 
     getRandomHexColor: function()
