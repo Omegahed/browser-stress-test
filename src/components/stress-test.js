@@ -39,6 +39,9 @@ AFRAME.registerComponent( "stress-test", {
 
     play: function()
     {
+        document.querySelector( "a-video" )
+            .object3D.renderOrder = 1;
+
         this.stressTestScene(
             this.data.boxCount,
             this.data.textureWidth,
@@ -131,6 +134,8 @@ AFRAME.registerComponent( "stress-test", {
                 + `opacity: ${ this.data.opacity };`
             );
 
+            console.debug( `material ${ i }:`, box.getAttribute( "material" ) );
+            
             scene.appendChild( box );
         }
     },
@@ -168,9 +173,33 @@ AFRAME.registerComponent( "stress-test", {
 
     playAllVideos: function()
     {
+        console.debug( "playAllVideos() is called." );
+
         document.querySelectorAll ( "video" ).forEach(
             ( video ) =>
             {
+                video.addEventListener(
+                    "playing",
+                    () =>
+                    {
+                        console.debug(
+                            "Video is playing:",
+                            video
+                        );
+                    }
+                );
+
+                video.addEventListener(
+                    "paused",
+                    () =>
+                    {
+                        console.debug(
+                            "Video is paused:",
+                            video
+                        );
+                    }
+                );
+
                 if ( video.paused )
                 {
                     console.debug(
