@@ -64,17 +64,18 @@
             boxCount: 200;
             textureWidth: 2048;
             textureHeight: 2048;
+            videoSelector: #sts-video;
         "
         play-videos
     >
         <a-assets>
 
             <video
-                id="video"
+                id="sts-video"
                 muted
                 autoplay
                 loop
-                src="/src/assets/videos/sts-133--star-trek--wakeup-call.mp4"
+                src="sts-133--star-trek--wakeup-call.mp4"
                 preload="auto"
                 crossorigin="anonymous"
                 type="video/mp4"
@@ -107,7 +108,7 @@
         ></a-cylinder>
 
         <a-video
-            src="#video"
+            src="#sts-video"
             width="1.6"
             height="0.9"
             position="0 1.6 -2"
