@@ -35,8 +35,11 @@ AFRAME.registerComponent( "stress-test", {
     init: function()
     {
         this.updateSchemaFromUrlParameters();
+    },
 
-        this.stressTestScene(
+    play: function()
+    {
+            this.stressTestScene(
             this.data.boxCount,
             this.data.textureWidth,
             this.data.textureHeight
