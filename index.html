@@ -14,9 +14,44 @@
         type="module"
         src="https://unpkg.com/aframe-environment-component@1.5.x/dist/aframe-environment-component.min.js"
     ></script>
+    <style>
+        .loading
+        {
+            padding: 2vw;
+
+            font-family:
+                "Source Sans Pro",
+                "Open Sans",
+                "Roboto",
+                "Helvetica Neue",
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            font-size: 5vw;
+            font-weight: 700;
+        }
+
+        .loading::after
+        {
+            content: '';
+            animation: dots 1.5s steps( 4, end ) infinite;
+        }
+
+        @keyframes dots
+        {
+            0%   { content: ''; }
+            25%  { content: '.'; }
+            50%  { content: '..'; }
+            75%  { content: '...'; }
+            100% { content: ''; }
+        }
+    </style>
 </head>
 
 <body>
+
+    <div class="loading">Loading</div>
 
     <a-scene
         stats
