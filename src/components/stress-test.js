@@ -73,6 +73,15 @@ AFRAME.registerComponent( "stress-test", {
         document.querySelectorAll ( "video" ).forEach(
             ( video ) =>
             {
+                if ( video.muted )
+                {
+                    video.muted = false;
+
+                    console.debug( `Video muted: ${ video.muted}` );
+
+                    return;
+                }
+
                 if ( video.paused )
                 {
                     video.play();
@@ -80,11 +89,6 @@ AFRAME.registerComponent( "stress-test", {
                 else
                 {
                     video.pause();
-                }
-
-                if ( video.muted )
-                {
-                    video.muted = false;
                 }
             }
         );
