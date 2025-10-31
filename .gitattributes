@@ -1,3 +1,54 @@
-# Auto detect text files and perform LF normalization
+# Auto detect text files and perform LF normalization.
 * text=auto
 * text eol=lf
+
+# -----------------------------------------------------
+# Treat all media and binary files as binary.
+# This prevents Git from trying to convert line endings
+# or perform diff/merge operations that can corrupt them.
+# -----------------------------------------------------
+
+# Video files.
+*.mp4  binary
+*.mov  binary
+*.avi  binary
+*.mkv  binary
+*.webm binary
+
+# Audio files.
+*.mp3  binary
+*.wav  binary
+*.ogg  binary
+*.flac binary
+
+# Image files.
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.bmp  binary
+*.tiff binary
+*.svg  binary
+
+# 3D / A-Frame / model files.
+*.glb  binary
+*.gltf binary
+*.obj  binary
+*.fbx  binary
+*.dae  binary
+*.bin  binary
+
+# Archives.
+*.zip  binary
+*.tar  binary
+*.gz   binary
+
+# -----------------------------------------------------
+# Git LFS (optional, but recommended for large files).
+# Uncomment these if you use Git LFS.
+# -----------------------------------------------------
+# *.mp4  filter=lfs diff=lfs merge=lfs -text
+# *.mov  filter=lfs diff=lfs merge=lfs -text
+# *.webm filter=lfs diff=lfs merge=lfs -text
+# *.glb  filter=lfs diff=lfs merge=lfs -text
+# *.gltf filter=lfs diff=lfs merge=lfs -text
