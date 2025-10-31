@@ -26,7 +26,7 @@ AFRAME.registerComponent( "stress-test", {
         textWidthScalar: { type: "number", default: 0.15625 },
         textHeightScalar: { type: "number", default: 0.625 },
 
-        videoSelector: { type: "selector", default: "#video" },
+        videoSelector: { type: "string", default: "#video" },
         anisotropy: { type: "number", default: 16 },
         transparent: { type: "boolean", default: true },
         opacity: { type: "number", default: 0.8 }
@@ -73,24 +73,18 @@ AFRAME.registerComponent( "stress-test", {
         document.querySelectorAll ( "video" ).forEach(
             ( video ) =>
             {
-
                 if ( video.paused )
                 {
-                    console.debug(
-                        "Video is paused:",
-                    video
-                    );
-
                     video.play();
                 }
                 else
                 {
-                    console.debug(
-                        "Video is playing:",
-                    video
-                    );
-
                     video.pause();
+                }
+
+                if ( video.muted )
+                {
+                    video.muted = false;
                 }
             }
         );
@@ -169,7 +163,7 @@ AFRAME.registerComponent( "stress-test", {
             box.setAttribute(
                 "material",
                 `color: ${ randomHexColor };`
-                + `src: ${ this.data.videoSelector.src };`
+                + `src: ${ this.data.videoSelector };`
                 // + `normalMap: url( ${ textureUrl } );`
                 + `roughnessMap: url( ${ textureUrl } );`
                 // + `metalnessMap: url( ${ textureUrl } );`
@@ -237,7 +231,7 @@ AFRAME.registerComponent( "stress-test", {
                 );
 
                 video.addEventListener(
-                    "paused",
+                    "pause",
                     () =>
                     {
                         console.debug(
