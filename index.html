@@ -64,13 +64,14 @@
             boxCount: 200;
             textureWidth: 2048;
             textureHeight: 2048;
+            videoSelector: #sts-video;
         "
         play-videos
     >
         <a-assets>
 
             <video
-                id="video"
+                id="sts-video"
                 muted
                 autoplay
                 loop
@@ -107,7 +108,7 @@
         ></a-cylinder>
 
         <a-video
-            src="#video"
+            src="#sts-video"
             width="1.6"
             height="0.9"
             position="0 1.6 -2"
