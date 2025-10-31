@@ -34,6 +34,7 @@ AFRAME.registerComponent( "stress-test", {
 
     init: function()
     {
+        this.bindMethods();
         this.updateSchemaFromUrlParameters();
     },
 
@@ -49,6 +50,50 @@ AFRAME.registerComponent( "stress-test", {
         );
 
         this.playAllVideos();
+
+        this.addEventListeners();
+    },
+
+    bindMethods: function()
+    {
+        this.onClick = this.onClick.bind( this );
+    },
+
+    addEventListeners: function()
+    {
+        console.debug( "addEventListeners() is called." );
+
+        document.addEventListener( "click", this.onClick );
+    },
+
+    onClick: function()
+    {
+        console.debug( "onClick() is called." );
+
+        document.querySelectorAll ( "video" ).forEach(
+            ( video ) =>
+            {
+
+                if ( video.paused )
+                {
+                    console.debug(
+                        "Video is paused:",
+                    video
+                    );
+
+                    video.play();
+                }
+                else
+                {
+                    console.debug(
+                        "Video is playing:",
+                    video
+                    );
+
+                    video.pause();
+                }
+            }
+        );
     },
 
     updateSchemaFromUrlParameters: function()
@@ -178,6 +223,8 @@ AFRAME.registerComponent( "stress-test", {
         document.querySelectorAll ( "video" ).forEach(
             ( video ) =>
             {
+                console.debug( "video:", video );
+
                 video.addEventListener(
                     "playing",
                     () =>
