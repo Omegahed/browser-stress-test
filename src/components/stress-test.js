@@ -34,11 +34,52 @@ AFRAME.registerComponent( "stress-test", {
 
     init: function()
     {
+        this.updateSchemaFromUrlParameters();
+
         this.stressTestScene(
             this.data.boxCount,
             this.data.textureWidth,
             this.data.textureHeight
         );
+    },
+
+    updateSchemaFromUrlParameters: function()
+    {
+        const urlParameters = new URLSearchParams( window.location.search );
+
+        // NOTE: Loop through the schema keys and update
+        // values if URL param exists.
+        Object.keys( this.schema ).forEach(
+            ( key ) =>
+                {
+                    if ( urlParameters.has( key ) )
+                    {
+                        const type = this.schema[ key ].type;
+
+                        let value = urlParameters.get( key );
+
+                        // NOTE: Coerce to correct type.
+                        if ( type === "number" ) value = parseFloat( value );
+                        if ( type === "boolean" ) value = value === "true";
+
+                        // NOTE: Update component data.
+                        this.data[ key ] = value;
+                    }
+            }
+        );
+
+        // NOTE: Apply the updated data to the entity or use
+        // it as needed.
+        this.applyAttributes();
+    },
+
+    applyAttributes: function()
+    {
+        this.el.setAttribute( "boxCount", `${ this.data.boxCount }` );
+        this.el.setAttribute( "textureWidth", `${ this.data.boxCount }` );
+        this.el.setAttribute( "textureHeight", `${ this.data.boxCount }` );
+
+        console.debug( "Configured attributes:", this.data );
     },
 
     stressTestScene: function( numberOfObjects, textureWidth, textureHeight)
