@@ -34,12 +34,65 @@ AFRAME.registerComponent( "stress-test", {
 
     init: function()
     {
+        this.bindMethods();
         this.updateSchemaFromUrlParameters();
+    },
+
+    play: function()
+    {
+        document.querySelector( "a-video" )
+            .object3D.renderOrder = 1;
 
         this.stressTestScene(
             this.data.boxCount,
             this.data.textureWidth,
             this.data.textureHeight
+        );
+
+        this.playAllVideos();
+
+        this.addEventListeners();
+    },
+
+    bindMethods: function()
+    {
+        this.onClick = this.onClick.bind( this );
+    },
+
+    addEventListeners: function()
+    {
+        console.debug( "addEventListeners() is called." );
+
+        document.addEventListener( "click", this.onClick );
+    },
+
+    onClick: function()
+    {
+        console.debug( "onClick() is called." );
+
+        document.querySelectorAll ( "video" ).forEach(
+            ( video ) =>
+            {
+
+                if ( video.paused )
+                {
+                    console.debug(
+                        "Video is paused:",
+                    video
+                    );
+
+                    video.play();
+                }
+                else
+                {
+                    console.debug(
+                        "Video is playing:",
+                    video
+                    );
+
+                    video.pause();
+                }
+            }
         );
     },
 
@@ -126,6 +179,8 @@ AFRAME.registerComponent( "stress-test", {
                 + `opacity: ${ this.data.opacity };`
             );
 
+            console.debug( `material ${ i }:`, box.getAttribute( "material" ) );
+            
             scene.appendChild( box );
         }
     },
@@ -159,6 +214,50 @@ AFRAME.registerComponent( "stress-test", {
 
         // NOTE: Export as data URL.
         return canvas.toDataURL();
+    },
+
+    playAllVideos: function()
+    {
+        console.debug( "playAllVideos() is called." );
+
+        document.querySelectorAll ( "video" ).forEach(
+            ( video ) =>
+            {
+                console.debug( "video:", video );
+
+                video.addEventListener(
+                    "playing",
+                    () =>
+                    {
+                        console.debug(
+                            "Video is playing:",
+                            video
+                        );
+                    }
+                );
+
+                video.addEventListener(
+                    "paused",
+                    () =>
+                    {
+                        console.debug(
+                            "Video is paused:",
+                            video
+                        );
+                    }
+                );
+
+                if ( video.paused )
+                {
+                    console.debug(
+                        "Video is paused:",
+                    video
+                    );
+
+                    video.play();
+                }
+            }
+        );
     },
 
     getRandomHexColor: function()
