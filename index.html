@@ -58,6 +58,7 @@
 
     <a-scene
         stats
+        highRefreshRate="true;"
         xr-mode-ui="XRMode: xr;"
         stress-test=
         "
@@ -86,6 +87,15 @@
 
         <a-entity meta-touch-controls="hand: left"></a-entity>
         <a-entity meta-touch-controls="hand: right"></a-entity>
+
+        <a-entity
+            id="leftHand"
+            hand-tracking-controls="hand: left;"
+        ></a-entity>
+        <a-entity
+            id="rightHand"
+            hand-tracking-controls="hand: right;"
+        ></a-entity>
 
         <a-entity
             hide-on-enter-ar
